@@ -1,6 +1,6 @@
 #个人测试
 test:
-  date:2018-05-23
+  date: 2018-05-23
 
 #jedis pool
 jedis: 
