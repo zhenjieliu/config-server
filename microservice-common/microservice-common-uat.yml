@@ -1,0 +1,42 @@
+#jedis pool
+jedis: 
+  pool: 
+    host: 10.150.33.97
+    port: 6379
+    config:
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis: 10000
+ 
+#  数据库配置
+spring:
+  datasource: 
+    hikari:
+      #一个连接idle状态的最大时长（毫秒），超时则释放，缺省为10分钟
+      idle_timeout: 600000
+      # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没有可用的连接则发生SQLException 缺省为30秒
+      connection_timeout: 30000
+      #一个连接的生命时长（毫秒），超时而且没有被使用则被释放，缺省为30分钟，建议比数据库超时时间少30秒
+      max_lifetime: 1800000
+      #连接池中允许最大的连接数，缺省为10
+      maximum-pool-size: 100
+      connection-test-query: 'SELECT 1'
+      
+      validation_timeout: 3000
+      login_timeout: 500
+      
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://10.150.33.105:5432/boss
+    username: boss
+    password: boss_boss
+    type: com.zaxxer.hikari.HikariDataSource
+    
+---
+# 日志跟踪服务
+spring: 
+  zipkin:
+    base-url: http://microservice-sleuth:7002/
+  sleuth:
+    sampler:
+      percentage: 1
+
